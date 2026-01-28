@@ -1,11 +1,9 @@
 # HILL CIPHER
-HILL CIPHER
-EX. NO: 3 AIM:
- 
 
-IMPLEMENTATION OF HILL CIPHER
- 
-## To write a C program to implement the hill cipher substitution techniques.
+## EX. NO: 3 IMPLEMENTATION OF HILL CIPHER
+## AIM:
+   
+To write a C program to implement the hill cipher substitution techniques.
 
 ## DESCRIPTION:
 
@@ -30,6 +28,59 @@ STEP-5: Combine all these groups to get the complete cipher text.
 
 ## PROGRAM 
 
+```
+#include <stdio.h>
+
+int main() {
+    int key[3][3] = {
+        {6, 24, 1},
+        {13, 16, 10},
+        {20, 17, 15}
+    };
+
+    char text[] = "MEETME";
+    int i, j, k;
+    int pt[3], ct[3];
+
+    printf("Key Matrix:\n");
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            printf("%d ", key[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("\nPlain Text: %s\n", text);
+
+    for (i = 0; i < 6; i += 3) {
+
+        for (j = 0; j < 3; j++) {
+            pt[j] = text[i + j] - 'A';
+        }
+
+        for (j = 0; j < 3; j++) {
+            ct[j] = 0;
+            for (k = 0; k < 3; k++) {
+                ct[j] += key[j][k] * pt[k];
+            }
+            ct[j] = ct[j] % 26;
+        }
+
+        for (j = 0; j < 3; j++) {
+            text[i + j] = ct[j] + 'A';
+        }
+    }
+
+    printf("Cipher Text: %s\n", text);
+
+    return 0;
+}
+
+```
 ## OUTPUT
 
+<img width="409" height="255" alt="image" src="https://github.com/user-attachments/assets/4f97b3e2-b1fa-4f21-90cd-65a770815ac7" />
+
 ## RESULT
+
+Thus, a C program to implement the hill cipher substitution techniques is succuessfully implmented.
